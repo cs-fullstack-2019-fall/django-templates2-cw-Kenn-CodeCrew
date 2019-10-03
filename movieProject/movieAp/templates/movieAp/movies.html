@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <h1>My Movies Page</h1>
+    <h2>
+        {% block subtitle %}
+        {% endblock %}
+    </h2>
+</header>
+<section>
+    {% block content %}
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Movie Title</th>
+            <th>Movie Details</th>
+            <th>Movie Synopsis</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for eachMovie in movieArray %}
+            <tr>
+                <td>{{ eachMovie.movie_title }}</td>
+                <td>
+                    <a href="movie_details/{{ eachMovie.movie_id }}">
+                    {# <a href="{% url 'movie_details' eachMovie.movie_id %}"> #}
+                        {{ eachMovie.movie_details }}
+                    </a>
+                    </td>
+                <td>
+                        <a href="{% url 'movie_synopsis' eachMovie.movie_id %}">
+                        {{ eachMovie.movie_synopsis }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+</section>
+</body>
+</html>
